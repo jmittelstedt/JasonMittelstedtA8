@@ -1,0 +1,2 @@
+Finds houses priced above $150,000 that have been on the market less than 6 months.
+Groups them by City and orders by Price descending.
