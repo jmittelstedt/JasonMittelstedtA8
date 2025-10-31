@@ -10,7 +10,7 @@ namespace JasonMittelstedtA8.Data
 {
     public class DataImporter
     {
-        private const string FilePath = "Assignment8Data.json"; 
+        private const string FileName = "Assignment8Data.json"; 
 
         public List<House> ImportData()
         {
@@ -20,8 +20,13 @@ namespace JasonMittelstedtA8.Data
                 {
                     PropertyNameCaseInsensitive = true
                 };
-
-                string json = File.ReadAllText(FilePath);
+                string ep = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string sp = Directory.GetParent(ep).Parent.Parent.Parent.FullName;
+                Console.WriteLine(sp);
+                string baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+                string dataFilePath = Path.Combine(sp, "Data", FileName);
+                string json = File.ReadAllText(dataFilePath);
+                Console.WriteLine(json);
                 var houses = JsonSerializer.Deserialize<List<House>>(json, options);
                 return houses ?? new List<House>();
             }
