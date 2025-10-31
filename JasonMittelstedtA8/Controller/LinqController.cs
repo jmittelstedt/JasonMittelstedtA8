@@ -7,16 +7,35 @@ using System.Threading.Tasks;
 
 namespace JasonMittelstedtA8.Controller
 {
+    /// <summary>
+    /// Provides methods for executing and displaying LINQ queries on a collection of <see cref="House"/> objects.
+    /// </summary>
     public class LinqController
     {
+        /// <summary>
+        /// The list of <see cref="House"/> objects to be queried using LINQ.
+        /// </summary>
         private readonly List<House> houses;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LinqController"/> class with a specified list of houses.
+        /// </summary>
+        /// <param name="houses">The collection of <see cref="House"/> objects used for LINQ queries.</param>
         public LinqController(List<House> houses)
         {
             this.houses = houses;
         }
 
         // ---------- Regular LINQ ----------
+
+        /// <summary>
+        /// Executes a series of standard (query syntax) LINQ queries on the house data
+        /// and displays the results in the console.
+        /// </summary>
+        /// <remarks>
+        /// Demonstrates various LINQ operations, including filtering, ordering, grouping, 
+        /// and projection using query syntax.
+        /// </remarks>
         public void RunRegularLinqQueries()
         {
             var q1 = from h in houses
@@ -73,6 +92,15 @@ namespace JasonMittelstedtA8.Controller
         }
 
         // ---------- Lambda LINQ ----------
+
+        /// <summary>
+        /// Executes a series of LINQ queries using lambda syntax on the house data
+        /// and displays the results in the console.
+        /// </summary>
+        /// <remarks>
+        /// Demonstrates equivalent LINQ functionality to <see cref="RunRegularLinqQueries"/>,
+        /// but uses lambda expressions and method chaining instead of query syntax.
+        /// </remarks>
         public void RunLambdaLinqQueries()
         {
             var q1 = houses.Where(h => h.Time_On_Market > 5);
@@ -115,6 +143,11 @@ namespace JasonMittelstedtA8.Controller
             }
         }
 
+        /// <summary>
+        /// Prints the results of a LINQ query to the console with a given title.
+        /// </summary>
+        /// <param name="title">The title describing the query results being displayed.</param>
+        /// <param name="results">The collection of <see cref="House"/> objects to display.</param>
         private void PrintResults(string title, IEnumerable<House> results)
         {
             Console.WriteLine($"\n{title}:");
